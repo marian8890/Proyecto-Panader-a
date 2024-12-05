@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Carrito de compras - Barbería Alura</title>
+		<link rel="stylesheet" href="reset.css">
+		<link rel="stylesheet" href="style.css">
+		<link rel="stylesheet" href="carrito.css">
+
+	</head>
+	<body>
+		<header>
+			<div class="caja">
+				<h1><img src="imagenes/logo.png"></h1>
+				<nav>
+					<ul>
+						<li><a href="index.html">HOME</a></li>
+						<li><a href="productos.html">Productos</a></li>
+						
+						<li><a href="venta.html">Venta</a></li>
+						
+					</ul>
+				</nav>	
+			</div>
+		</header>
+
+
+
+		<main >
+			
+					
+			<div id="carrito">
+				
+				<h2 class="carritotitulo">Carrito de Compras <img id="carrito_de_compras" src="imagenes/carrito de compras.png"> </h2>
+				
+				<table id="tabla-carrito">
+					<thead>
+						<tr>
+							<th>Producto</th>  
+							<th>Cantidad</th>  
+							<th>Precio</th>  
+							<th>Eliminar</th>
+						</tr>
+					</thead>
+					
+					<tbody id="lista-carrito"></tbody> 
+				</table>
+				
+				<p class="alinear-derecha">
+					<span class="total-carrito" id="total-carrito">Total:  </span>
+				</p>
+
+				<p class="btn_carrito">
+					<button onclick="vaciarCarrito()">Vaciar Carrito</button>
+					<button onclick="comprar()" >Comprar</button>
+				</p>
+				
+				
+			</div>
+			
+
+			<script >
+				function cargarCarrito() {
+        			const listaCarrito = document.getElementById('lista-carrito');
+					const totalCarrito = document.getElementById('total-carrito'); // Nuevo elemento para el total
+        			const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+					listaCarrito.innerHTML = ''; // Limpiar la lista
+
+					let total = 0;
+
+        		if (carrito.length === 0) {
+            		listaCarrito.innerHTML = '<tr><td colspan="4">El carrito está vacío</td></tr>';
+					totalCarrito.innerHTML = 'Total: $0'; // Mostrar total 0 
+        		} else {
+            		carrito.forEach((item, index) => {
+                		const  fila = document.createElement('tr');
+						fila.innerHTML = `
+							<td>${item.nombre}</td>  
+                			<td>  
+                    			<input type="number" class="cantidad" value="${item.cantidad}" min="1" onchange="actualizarCantidad(${index}, this.value)">  
+                			</td>  
+                			<td>$${(item.precio * item.cantidad).toFixed(2)}</td>  
+                			<td><button onclick="eliminarProducto(${index})">Eliminar</button></td>  
+                		
+					`;
+                		listaCarrito.appendChild(fila);
+
+						//Calcular total
+						total += item.precio * item.cantidad;
+            		 });
+
+					 totalCarrito.innerHTML = `Total: $${total.toFixed(2)}`;
+        		}
+    			}
+
+				function actualizarCantidad(index, cantidad) {
+					const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+					carrito[index].cantidad = parseInt(cantidad);
+					localStorage.setItem('carrito', JSON.stringify(carrito));
+					cargarCarrito();
+				}
+
+				function eliminarProducto(index) {
+					let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+					carrito.splice(index, 1);
+					localStorage.setItem('carrito', JSON.stringify(carrito));
+					cargarCarrito();
+				}
+
+				function vaciarCarrito() {
+					localStorage.removeItem('carrito');
+					cargarCarrito();
+				}
+
+				// Cargar el carrito al abrir la página
+				window.onload = cargarCarrito;
+			</script>
+			
+			<script>
+				function comprar() {
+					window.open('login.html', '_blank'); 
+				}
+			</script>
+
+			    		
+		</main>
+
+		<footer>
+			<img src="imagenes/logo-blanco.png">
+			<p class="copyright">&copy Copyright Barbería Alura - 2023</p>
+			<p class="contact">Contacto: cristianezearaya@gmail.com - +54 9 2614167372</p>
+		</footer>
+	</body>
+</html>
+
+
+

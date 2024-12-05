@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Venta - Barbería Alura</title>
+		<link rel="stylesheet" href="reset.css">
+		<link rel="stylesheet" href="styleVenta.css">
+		
+		
+	</head>
+
+	<body>
+		<header>
+			<div class="caja">
+				<h1><img src="imagenes/logo.png"></h1>
+				<nav>
+					<ul >
+						<li><a href="index.html">HOME</a></li>
+						<li><a href="productos.html">Productos</a></li>
+						
+						<li><a href="venta.html">Venta</a></li>
+						<li>
+							<a class="navigation" href="carrito.html" onclick=cargarCarrito()>
+								<div class="carrito-contenedor">
+									<img src="imagenes/carrito de compras.png">
+									<span class="cantidad" id="cantidad-productos">0</span>
+								</div>
+						</a></li>
+					</ul>
+				</nav>	
+			</div>
+		</header>
+
+		<main>
+			<ul class="productosVenta">
+				<li>
+					<h2></h2>
+					<img class="imagenVenta" src="imagenes/acondicionador1.png" alt="Acondicionador">
+					<p class="producto-descripcion">Barber Acondicionador 50 gr</p>
+					<p class="producto-precio">$ 3500</p>
+					<button class="boton" onclick="agregarAlCarrito('Barber Acondicionador 50 gr', 3500)"  >
+						<img src="imagenes/carrito de compras.png" class="carritoIcono" alt="Carrito de compras" >
+					</button>
+				</li>
+				<li>
+					<h2></h2>
+					<img class="imagenVenta" src="imagenes/shampoo1.png">
+					<p class="producto-descripcion">Barber Shampoo 250 cc</p>
+					<p class="producto-precio">$ 4500</p>
+					<button class="boton" onclick="agregarAlCarrito('Barber Shampoo 250 gr', 4500)" >
+						<img src="imagenes/carrito de compras.png" class="carritoIcono">
+					</button>
+				</li>
+				<li>
+					<h2></h2>
+					<img class="imagenVenta" src="imagenes/serum.png">
+					<p class="producto-descripcion">Barber Aceite Gotero</p>
+					<p class="producto-precio">$ 8500</p>
+					<button class="boton" onclick="agregarAlCarrito('Barber Aceite Gotero', 8500)" >
+						<img src="imagenes/carrito de compras.png" class="carritoIcono">
+					</button>
+				</li>
+				<li>
+					<h2></h2>
+					<img class="imagenVenta" src="imagenes/cera brillante1.png">
+					<p class="producto-descripcion">Barber Cera Brillante</p>
+					<p class="producto-precio">$ 6459</p>
+					<button class="boton" onclick="agregarAlCarrito('Barber Cera Brillante', 6459)" >
+						<img src="imagenes/carrito de compras.png" class="carritoIcono">
+					</button>
+				</li>
+				<li>
+					<h2></h2>
+					<img class="imagenVenta" src="imagenes/cera efecto mate1.png">
+					<p class="producto-descripcion">Barber Pomada Efecto Mate</p>
+					<p class="producto-precio">$ 6459</p>
+					<button class="boton" onclick="agregarAlCarrito('Barber Pomada Efecto Mate', 6459)" >
+						<img src="imagenes/carrito de compras.png" class="carritoIcono">
+					</button>
+				</li>
+				<li>
+					<h2></h2>
+					<img class="imagenVenta" src="imagenes/gel de afeitar1.png">
+					<p class="producto-descripcion">Gel Para Afeitar 250cc</p>
+					<p class="producto-precio">$ 5439</p>
+					<button class="boton" onclick="agregarAlCarrito('Gel Para Afeitar 250cc', 5439)">
+						<img src="imagenes/carrito de compras.png" class="carritoIcono">
+					</button>
+				</li>
+				<li>
+					<h2></h2>
+					<img class="imagenVenta" src="imagenes/gel para barba1.png">
+					<p class="producto-descripcion">Barber Gel Ultra Fuerte 220gr</p>
+					<p class="producto-precio">$ 6889</p>
+					<button class="boton" onclick="agregarAlCarrito('Barber Gel Ultra Fuerte 220gr', 6889)" >
+						<img src="imagenes/carrito de compras.png" class="carritoIcono">
+					</button>
+				</li>
+			</ul>
+
+			<div id="carrito">
+				 <h3>Carrito de Compras</h3>  
+       			 <ul id="lista-carrito"></ul> 
+			</div>
+
+		</main>
+
+		<script>
+
+			function agregarAlCarrito(nombre, precio) {
+
+				let carrito = JSON.parse(localStorage.getItem('carrito')) || [];  
+    
+				// Verifica si el producto ya está en el carrito  
+				const existingProductIndex = carrito.findIndex(item => item.nombre === nombre);  
+				if (existingProductIndex !== -1) {  
+					// Si ya está, simplemente incrementa la cantidad  
+					carrito[existingProductIndex].cantidad += 1;  
+				} else {  
+					// Si no está, lo agrega con cantidad 1  
+					carrito.push({ nombre: nombre, precio: precio, cantidad: 1 });  
+				}  
+    
+				localStorage.setItem('carrito', JSON.stringify(carrito));  
+				alert(nombre + " agregado al carrito");  
+				
+				// Actualiza la cantidad visible en el carrito  
+				cargarCarrito();
+       			
+    		}
+
+			let cantidad = 0; // Variable que guarda la cantidad de productos  
+
+			function cargarCarrito() {  
+				const carrito = JSON.parse(localStorage.getItem('carrito')) || [];  
+   				 cantidad = carrito.reduce((total, item) => total + item.cantidad, 0); // Suma las cantidades  
+
+    			// Actualiza el valor mostrado en el carrito  
+    			document.getElementById("cantidad-productos").innerText = cantidad;   
+			}
+
+		</script>
+				
+		
+
+		
+		
+		<a href="carrito.html">Ver carrito</a>
+
+		<footer>
+			<img src="imagenes/logo-blanco.png">
+			<p class="copyright">&copy Copyright Barbería Alura - 2023</p>
+			<p class="contact">Contacto: cristianezearaya@gmail.com - +54 9 2614167372</p>
+		</footer>
+	</body>
+</html>

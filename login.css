@@ -1,0 +1,61 @@
+.login-form{
+	margin-top: 10px;
+	margin-left: 200px;
+	position: relative;
+	font-size: 24px;
+}
+.form-container {
+	display: none; /* Inicialmente ocultamos los formularios */  
+	margin-top: 0px;
+	margin-left: 200px;
+	position: relative;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+
+.input{
+	margin-top: 0px;
+	margin-bottom: 2px;
+	margin-left: 20px;
+	position: relative;
+	width: 300px;
+	height: 30px;
+}
+
+.registrarse-form {
+	margin: 0px;
+	margin-left: 30px;
+	font-size: 24px;
+}
+
+.btn_login{
+	margin: 20px;
+	margin-left: 300px;
+	
+}
+
+.label_input{
+	margin: 0px;
+	margin-bottom: 5px;
+}
+
+.btn_login1{
+	margin-top: 10px;
+	margin-left: 200px;
+}
+
+.error-message{
+	color: red;
+	display: none; /* Oculto por defecto */
+}
+
+.password-requirements{
+	color: #555; /* Color para las instrucciones */
+    font-size: 0.9em;
+}
+
+
+

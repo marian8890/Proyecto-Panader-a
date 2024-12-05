@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+
+<html lang="es">
+	<head>
+		<meta charset="UTF-8">
+		<title>Inicio de Sesión - Barbería Alura</title>
+		<link rel="stylesheet" href="reset.css">
+		<link rel="stylesheet" href="styleVenta.css">
+		<link rel="stylesheet" href="login.css">
+		
+		<script>  
+			function mostrarFormulario(tipo) {  
+				// Oculta ambos formularios  
+				document.getElementById('login-form').style.display = 'none';  
+				document.getElementById('register-form').style.display = 'none';  
+	
+				// Muestra el formulario correspondiente  
+				if (tipo === 'login') {  
+					document.getElementById('login-form').style.display = 'block';  
+				} else if (tipo === 'register') {  
+					document.getElementById('register-form').style.display = 'block';  
+				}  
+			}  
+		</script> 
+	</head>
+
+	<body>
+		<header>
+			<div class="caja">
+				<h1><img src="imagenes/logo.png"></h1>
+				<nav>
+					<ul >
+						
+						<li><a href="index.html">HOME</a></li>
+						<li><a href="productos.html">Productos</a></li>
+						
+						<li><a href="login.html">Venta</a></li>
+						
+						
+					</ul>
+				</nav>	
+			</div>
+		</header>
+
+		<p class="login-form">Por favor, inicie sesión o regístrese para iniciar compra</p>  
+
+    <button onclick="mostrarFormulario('login')" class="btn_login">Iniciar Sesión</button>  
+    <button onclick="mostrarFormulario('register')">Registrarse</button>  
+
+    <div id="login-form" class="form-container"  >  
+        <h2 class="registrarse-form">Iniciar Sesión</h2>  
+         
+		<form id= "form" class="label_input" action="http://localhost/verificar_usuario.php" method="post">  
+           
+			<label for="login-email">Email:</label><br>  
+            <input class="input" type="email" id="login-email" name="login-email" required><br>  
+			<span id="error-message" class="error-message">El mail ingresado no es correcto.</span>
+            <label for="login-password">Contraseña:</label><br>  
+            <input class="input" type="password" id="login-password" name="login-password" required><br>  
+            <input class="btn_login1" type="submit" value="Iniciar Sesión" >  
+        
+		</form> 
+		
+    </div>  
+
+    <div id="register-form" class="form-container"> 
+
+        <h2 class="registrarse-form">Registrarse</h2>  
+
+        <form action="http://localhost/registro.php" method="POST"> 
+
+            <label for="register-email">Email:</label><br>  
+            <input class="input" type="email" id="register-email" name="register-email" required><br> 
+			<span id="error-message" class="error-message">El mail ingresado no es correcto.</span> 
+            <label for="register-password">Contraseña:</label><br>  
+			<span class="password-requirements">
+                La contraseña debe contener: 
+				<p><li>12 caracteres</li></p>
+				<p><li>una letra minúscula</li></p>
+				<p><li>un número</li></p>
+            </span><br>
+            <input class="input" type="password" id="register-password" name="register-password" required><br>  
+            <label for="register-confirm-password">Confirma tu Contraseña:</label><br>  
+            <input class="input" type="password" id="register-confirm-password" name="register-confirm-password" required><br>  
+            <input class="btn_login1" type="submit" value="Registrarse">  
+
+        </form>  
+
+    </div> 
+
+	<script>
+
+		document.getElementById('form').addEventListener('submit', function(event) {
+
+            const emailInput = document.getElementById('login-email').value;
+			const passwordInput = document.getElementById('login-password').value;
+            const errorMessage = document.getElementById('error-message');
+			const errorPassword = document.getElementById('error-password');
+            
+			// Ocultar mensaje por defecto
+			errorMessage.style.display = 'none'; 
+			errorPassword.style.display = 'none';
+
+            // Validar el email
+            if (!emailInput) {
+
+                errorMessage.textContent = 'Por favor, ingrese su correo electrónico.'; // Mensaje si está vacío
+                errorMessage.style.display = 'block'; // Mostrar mensaje de error
+                event.preventDefault(); // Evitar el envío del formulario
+
+            } else if (!emailInput.includes('@') || !emailInput.includes('.com')) {
+
+                errorMessage.textContent = 'El correo electrónico ingresado no es correcto. Debe contener "@" y ".com".'; // Mensaje de formato incorrecto
+                errorMessage.style.display = 'block'; // Mostrar mensaje de error
+                event.preventDefault(); // Evitar el envío del formulario
+
+            } else {
+
+                errorMessage.style.display = 'none'; // Ocultar mensaje de error
+				
+            }
+        
+
+		// Validar la contraseña
+		if (passwordInput.length < 12) {
+
+                errorPassword.textContent = 'La contraseña debe tener al menos 12 caracteres.'; 
+                errorPassword.style.display = 'block'; 
+                event.preventDefault(); 
+
+            } else if (!/[a-z]/.test(passwordInput)) {
+
+                errorPassword.textContent = 'La contraseña debe contener al menos una letra minúscula.'; 
+                errorPassword.style.display = 'block'; 
+                event.preventDefault(); 
+
+            } else if (!/[0-9]/.test(passwordInput)) {
+
+                errorPassword.textContent = 'La contraseña debe contener al menos un número.'; 
+                errorPassword.style.display = 'block'; 
+                event.preventDefault(); 
+
+            }
+        });
+		
+		
+
+
+	</script>
+
+
+		<footer>
+			<img src="imagenes/logo-blanco.png">
+			<p class="copyright">&copy Copyright Barbería Alura - 2023</p>
+			<p class="contact">Contacto: cristianezearaya@gmail.com - +54 9 2614167372</p>
+		</footer>
+	</body>
+</html>

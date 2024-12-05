@@ -1,0 +1,65 @@
+#carrito{
+	
+	margin: 10px;
+	overflow: hidden;
+	
+}
+
+.carritotitulo{
+	font-size: 24px;
+	margin: 40px;
+}
+
+#carrito_de_compras{
+	margin-right: 8px;
+	vertical-align: middle;
+	width: 24px;
+	height: auto;
+}
+
+.carritoIcono{
+	margin: 20px 10px;
+}
+
+.btn_carrito{
+	padding: 10px 20 px;
+	margin: 20px 0;
+	margin-left: 30px;
+	display: flex;
+	justify-content: space-between;
+
+}
+
+#tabla-carrito{
+	width: 97%;  
+    border-collapse: collapse; 
+	margin-right: 10px;
+}
+
+#tabla-carrito th, #tabla-carrito td {  
+	border: 1px solid #ddd; /* Borde de las celdas */  
+	padding: 6px; /* Espaciado interno en celdas */  
+	text-align: center; /* Alinear texto a la izquierda */  
+}  
+
+#tabla-carrito th {  
+	background-color: #545151; /* Color de fondo de los encabezados */  
+}  
+
+.btn_carrito button {
+	
+	margin: 10px 5px; /* Margen entre botones */  
+	margin-right: 10px;
+} 
+
+.total-carrito{
+	font-size: 24px;
+	margin-left: 30px;
+	
+}
+
+.alinear-derecha{
+	text-align: right;
+}
+
+
